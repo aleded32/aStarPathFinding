@@ -1,0 +1,18 @@
+﻿Build started 17/09/2020 16:36:13.
+     1>Project "D:\GitHub\aStarPathFinding\aStarPathFinding\aStarPathFinding.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"D:\SFML-2.4.0(Win32 - Visual Studio 2012)/include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt game.cpp main.cpp
+         game.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         main.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\GitHub\aStarPathFinding\Debug\aStarPathFinding.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\SFML-2.4.0(Win32 - Visual Studio 2012)/lib" "sfml-system-d.lib" "sfml-graphics-d.lib" "sfml-audio-d.lib" "sfml-network-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\GitHub\aStarPathFinding\Debug\aStarPathFinding.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\GitHub\aStarPathFinding\Debug\aStarPathFinding.lib" /MACHINE:X86 Debug\game.obj
+         Debug\grid.obj
+         Debug\main.obj
+         aStarPathFinding.vcxproj -> D:\GitHub\aStarPathFinding\Debug\aStarPathFinding.exe
+     1>Done Building Project "D:\GitHub\aStarPathFinding\aStarPathFinding\aStarPathFinding.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.14
