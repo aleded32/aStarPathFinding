@@ -1,14 +1,19 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include "grid.h"
+#include "node.h"
 #include <SFML/Graphics.hpp>
 
 class game
 {
 public:
 
+	node* nodes;
 	sf::RenderWindow* app;
-	grid<int>* Grid;
+	grid* Grid;
+
+
 
 	game();
 	~game();

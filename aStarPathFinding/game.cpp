@@ -3,12 +3,15 @@
 game::game()
 {
 	app = new sf::RenderWindow(sf::VideoMode(800,800), "a* pathFinding");
-	Grid = new grid<int>(10,10,0,0,2);
+	nodes = new node;
+	
 };
 
 game::~game()
 {
-
+	delete app;
+	
+	
 }
 
 
@@ -31,10 +34,14 @@ void game::update()
 
 void game::render()
 {
-
+	
 
 	app->clear();
 
+  
+	Grid = new grid(16,10,50,10,app);
+	
+	
 
 	app->display();
 }
