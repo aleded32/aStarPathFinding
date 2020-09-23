@@ -10,17 +10,13 @@ class grid
 public:
 
 	int width, height, cellsize, originPoint;
-    node* gridArray;
+    node** gridArray;
 
-	grid(int width, int height, int cellsize, int originPoint,sf::RenderWindow* app);
+	grid(int width, int height, int cellsize, int originPoint);
 	~grid();
 
-	sf::Vector2f* nodePos(node* gridArray, int cellsize, int originPoint, int i, int j)
-	{
-	     int x = gridArray[i * j].x * cellsize + originPoint;
-		 int y = gridArray[i * j].y * cellsize;
+	void RenderNodes(sf::RenderWindow* app);
 
-		 return new sf::Vector2f(x,y);
-	}
+
 
 };

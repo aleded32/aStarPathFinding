@@ -3,21 +3,23 @@
 game::game()
 {
 	app = new sf::RenderWindow(sf::VideoMode(800,800), "a* pathFinding");
-	nodes = new node;
-	
+	User = new user;
+	Grid = new grid(8,8,10,0);
 };
 
 game::~game()
 {
 	delete app;
-	
-	
+	delete User;
+	delete Grid;
 }
 
 
 
 void game::update()
 {
+	
+
 	while (app->isOpen())
 	{
 		sf::Event e;
@@ -28,7 +30,11 @@ void game::update()
 				app->close();
 			}
 		}
+
+		User->setWalkable(User->GetNodePos(Grid,app), true);
+		
 		render();
+		
 	}
 }
 
@@ -39,8 +45,11 @@ void game::render()
 	app->clear();
 
   
-	Grid = new grid(16,10,50,10,app);
 	
+	 Grid->RenderNodes(app);
+		
+
+	//std::cout << User->GetNodePos(Grid, app).isWalkable << std::endl;
 	
 
 	app->display();

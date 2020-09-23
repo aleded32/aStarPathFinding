@@ -3,7 +3,8 @@
 
 node::node()
 {
-	this->shape.setFillColor(sf::Color::Red);
+	shape.setFillColor(sf::Color::Red);
+	isWalkable = false;
 }
 
 node::~node()
