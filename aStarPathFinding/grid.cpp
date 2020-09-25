@@ -34,7 +34,7 @@ grid::grid(int _width, int _height, int _cellsize, int _originPoint)
 
 grid::~grid()
 {
-	delete gridArray;
+	//delete gridArray;
 	
 }
 

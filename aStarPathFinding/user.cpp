@@ -12,34 +12,35 @@ user::~user()
 }
 
 
-node user::GetNodePos(grid* gridOfNodes, sf::RenderWindow* app)
+node* user::GetNodePos(grid* gridOfNodes, sf::RenderWindow* app, int x, int y)
 {
 	
-	if(worldPos(gridOfNodes, app)->x >= 0 && worldPos(gridOfNodes,app)->y >= 0 &&  worldPos(gridOfNodes,app)->x < gridOfNodes->width &&  worldPos(gridOfNodes,app)->y < gridOfNodes->height )
+	if(worldPos(gridOfNodes, app).x >= 0 && worldPos(gridOfNodes,app).y >= 0 &&  worldPos(gridOfNodes,app).x < gridOfNodes->width &&  worldPos(gridOfNodes,app).y < gridOfNodes->height )
 	{
-		gridOfNodes->gridArray[worldPos(gridOfNodes, app)->x][worldPos(gridOfNodes, app)->y].x = worldPos(gridOfNodes, app)->x;
-		gridOfNodes->gridArray[worldPos(gridOfNodes, app)->x][worldPos(gridOfNodes, app)->y].y = worldPos(gridOfNodes, app)->y;
+		//gridOfNodes->gridArray[worldPos(gridOfNodes, app).x][worldPos(gridOfNodes, app).y].x = worldPos(gridOfNodes, app).x;
+		//gridOfNodes->gridArray[worldPos(gridOfNodes, app).x][worldPos(gridOfNodes, app).y].y = worldPos(gridOfNodes, app).y;
 
-		return gridOfNodes->gridArray[worldPos(gridOfNodes, app)->x][worldPos(gridOfNodes, app)->y];
+		return &gridOfNodes->gridArray[worldPos(gridOfNodes, app).x][worldPos(gridOfNodes, app).y];
 		
 	}
 	else
 	{
-		std::cout << "error" << std::endl;
-		return gridOfNodes->gridArray[0][0];
+		return nullptr;
 	}
 	
 }
 
-void user::setWalkable(node& GetNode, bool isWalkable)
+void user::setWalkable(node* GetNode, bool isWalkable)
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	
+	if(GetNode != nullptr)
 	{
-		std::cout << GetNode.isWalkable << std::endl;
-		GetNode.isWalkable = isWalkable;
-		
+		GetNode->isWalkable = isWalkable;
+		GetNode->shape.setFillColor(sf::Color(255,120,120,255));
+
 	}
-	std::cout << GetNode.isWalkable << std::endl;
+	
+	
 
 	
 }
