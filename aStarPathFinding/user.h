@@ -20,12 +20,16 @@ public:
 		return sf::Vector2i(gridX,gridY);
 	}
 
-	user();
+	user(grid* _GridOfNodes, sf::RenderWindow* app);
 	~user();
 
-	node* GetNodePos(grid* gridOfNodes, sf::RenderWindow* app, int x, int y);
+	node* GetNodePos(int x, int y);
 
 	void setWalkable(node* GetNode, bool isWalkable);
 	
+private: 
+
+	grid* gridOfNodes;
+	sf::RenderWindow* app;
 
 };

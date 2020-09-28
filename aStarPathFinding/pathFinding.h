@@ -6,6 +6,7 @@
 #include "user.h"
 #include <list>
 #include <limits>
+#include <algorithm>
 
 class pathFinding
 {
@@ -13,19 +14,21 @@ public:
 
 	int HEUSTRIC_COST;
 	int STRAIGHT_COST;
-	grid* GridOfNodes;
-	sf::RenderWindow* app;
+	
 
-	pathFinding(grid* GridOfNodes, sf::RenderWindow* app);
+	pathFinding(grid* GridOfNodes, sf::RenderWindow* app, user* _User);
 
 	~pathFinding();
+
+	node* GetLowestFcostInList(std::list<node*>* openlistNode);
+
 
 	grid* GetGrid()
 	{
 		return GridOfNodes;
 	}
 
-	std::list<node>* path(user* User,int startX, int startY, int EndX, int EndY);
+	std::list<node*>* path(user* User,int startX, int startY, int EndX, int EndY);
 	std::list<node*>* getNeighbour(node* currentNode);
 	std::list<node*>* caluclatedPath(node* endNode);
 
@@ -40,8 +43,12 @@ public:
 
 private:
 
+	grid* GridOfNodes;
+	sf::RenderWindow* app;
+	user* User;
+
 	std::list<node*>* openlist;
 	std::list<node*>* closedList;
 
-	node* GetLowestFcostInList(std::list<node*>* openlistNode);
+	
 };

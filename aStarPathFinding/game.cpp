@@ -3,7 +3,7 @@
 game::game()
 {
 	app = new sf::RenderWindow(sf::VideoMode(800,800), "a* pathFinding");
-	User = new user();
+	User = new user(Grid, app);
 	Grid = new grid(8,8,10,0);
 };
 
@@ -12,6 +12,7 @@ game::~game()
 	delete app;
 	delete User;
 	delete Grid;
+	
 }
 
 
@@ -36,7 +37,7 @@ void game::update()
 		
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
-			User->setWalkable(User->GetNodePos(Grid,app, User->worldPos(Grid, app).x, User->worldPos(Grid, app).y), true);
+			User->setWalkable(User->GetNodePos(User->worldPos(Grid, app).x, User->worldPos(Grid, app).y), true);
 				
 		}
 		
