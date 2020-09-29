@@ -5,6 +5,7 @@
 #include "node.h"
 #include <SFML/Graphics.hpp>
 #include "user.h"
+#include "pathFinding.h"
 
 class game
 {
@@ -14,6 +15,7 @@ public:
 	sf::RenderWindow* app;
 	grid* Grid;
 	user* User;
+	pathFinding* aStar;
 
 
 

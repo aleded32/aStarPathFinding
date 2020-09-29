@@ -17,14 +17,8 @@ public:
 
 	void RenderNodes(sf::RenderWindow* app);
 
-	int getWidth()
-	{
-		return width;
-	}
+	int getWidth();
 
-	int getHeight()
-	{
-		return height;
-	}
+	int getHeight();
 
 };

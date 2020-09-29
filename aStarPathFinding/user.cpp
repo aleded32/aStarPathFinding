@@ -16,12 +16,10 @@ user::~user()
 node* user::GetNodePos(int x, int y)
 {
 	
-	if(worldPos(gridOfNodes, app).x >= 0 && worldPos(gridOfNodes,app).y >= 0 &&  worldPos(gridOfNodes,app).x < gridOfNodes->width &&  worldPos(gridOfNodes,app).y < gridOfNodes->height )
+	if(x >= 0 &&y >= 0 &&  x < gridOfNodes->width &&  y < gridOfNodes->height )
 	{
-		gridOfNodes->gridArray[worldPos(gridOfNodes, app).x][worldPos(gridOfNodes, app).y].x = worldPos(gridOfNodes, app).x;
-		gridOfNodes->gridArray[worldPos(gridOfNodes, app).x][worldPos(gridOfNodes, app).y].y = worldPos(gridOfNodes, app).y;
 
-		return &gridOfNodes->gridArray[worldPos(gridOfNodes, app).x][worldPos(gridOfNodes, app).y];
+		return &gridOfNodes->gridArray[x][y];
 		
 	}
 	else
@@ -45,4 +43,14 @@ void user::setWalkable(node* GetNode, bool isWalkable)
 	
 
 	
+}
+
+sf::Vector2i user::worldPos()
+{
+		
+
+		int gridX = (sf::Mouse::getPosition(*app).x/(gridOfNodes->cellsize * gridOfNodes->getWidth()));
+		int gridY = (sf::Mouse::getPosition(*app).y/(gridOfNodes->cellsize * gridOfNodes->getHeight()));
+
+		return sf::Vector2i(gridX,gridY);
 }
