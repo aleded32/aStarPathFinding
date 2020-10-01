@@ -4,7 +4,7 @@
 
 
 class grid;
-
+//variables need for the nodes
 class node
 {
 public:

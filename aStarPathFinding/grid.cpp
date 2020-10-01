@@ -1,6 +1,6 @@
 #include "grid.h"
 
-											      
+//generates the grid										      
 grid::grid(int _width, int _height, int _cellsize, int _originPoint)
 {
 	this->width = _width;
@@ -21,6 +21,9 @@ grid::grid(int _width, int _height, int _cellsize, int _originPoint)
 			gridArray[i][j].x = i;
 			gridArray[i][j].y = j;
 
+
+
+
 			gridArray[i][j].shape.setPosition((i * width) * cellsize + originPoint, (j* height) * cellsize);
 			gridArray[i][j].shape.setSize(sf::Vector2f(50, 50));
 			
@@ -35,10 +38,11 @@ grid::grid(int _width, int _height, int _cellsize, int _originPoint)
 
 grid::~grid()
 {
-	//delete gridArray;
+	;
 	
 }
 
+//draws the nodes the screen
 void grid::RenderNodes(sf::RenderWindow* app)
 {
 	for(int i = 0; i < width; i++)

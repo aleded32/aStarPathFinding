@@ -2,6 +2,7 @@
 
 game::game()
 {
+	//creates pointers
 	app = new sf::RenderWindow(sf::VideoMode(800,800), "a* pathFinding");
 	Grid = new grid(8,8,10,0);
 	User = new user(Grid, app);
@@ -11,10 +12,12 @@ game::game()
 
 game::~game()
 {
+	//removes pointers from heap memory
 	delete app;
 	delete User;
 	delete Grid;
-	
+	//delete aStar;
+
 }
 
 
@@ -22,9 +25,7 @@ game::~game()
 void game::update()
 {
 
-
-	
-
+	//game Loop
 	while (app->isOpen())
 	{
 		sf::Event e;
@@ -36,30 +37,42 @@ void game::update()
 			}
 		}
 
+		//setting colours of start and end point;
+
 		
-			
-	
-			std::list<node*>* pathAstar =  aStar->path(User, Grid->gridArray[2][1].x,  Grid->gridArray[2][1].y,  Grid->gridArray[4][3].x, Grid->gridArray[4][3].y);
+
+		//calling to calculate the path
+		std::list<node*>* pathAstar =  aStar->path(User, Grid->gridArray[1][1].x,  Grid->gridArray[1][1].y,  Grid->gridArray[7][3].x, Grid->gridArray[7][3].y);	
+		std::list<node*>::iterator it;
 		
+
+		//show the path drawn
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{		
 			if(pathAstar != nullptr)
 			{
-				std::list<node*>::iterator it;
-
-				for(it = pathAstar->begin(); it != pathAstar->end(); it++)
-				{
-					(*it)->shape.setFillColor(sf::Color::Green);
-				}
+				aStar->showPath(pathAstar, it, sf::Color::Green);
 			}
-	
-		
-		
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		{
-			User->setWalkable(User->GetNodePos(User->worldPos().x, User->worldPos().y), true);
 				
 		}
+		else
+		{
+			if(pathAstar != nullptr)
+			{
+				aStar->showPath(pathAstar, it, sf::Color::Red);
+			}
+		}
+
+		Grid->gridArray[1][1].shape.setFillColor(sf::Color::White);
+		Grid->gridArray[7][3].shape.setFillColor(sf::Color::Blue);
 		
+		//set walkable nodes unwalkable
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			User->setWalkable(User->GetNodePos(User->worldPos().x, User->worldPos().y), false);
+		}
 		
+		//render images on screen
 		render();
 		
 	}

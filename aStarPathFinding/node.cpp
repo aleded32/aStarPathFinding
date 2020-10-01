@@ -4,7 +4,7 @@
 node::node()
 {
 	shape.setFillColor(sf::Color::Red);
-	isWalkable = false;
+	isWalkable = true;
 	
 }
 

@@ -12,6 +12,7 @@ pathFinding::pathFinding(grid* _GridOfNodes, sf::RenderWindow* _app, user* _User
 
 std::list<node*>* pathFinding::path(user* User,int StartX, int startY, int endX, int endY)
 {
+	//start of intiallising pathfinding
 	node* startNode = User->GetNodePos(StartX, startY);
 	node* endNode = User->GetNodePos(endX, endY);
 
@@ -30,7 +31,7 @@ std::list<node*>* pathFinding::path(user* User,int StartX, int startY, int endX,
 		{
 			
 			node* pathNode = User->GetNodePos(i,j);
-			pathNode->gCost = (int)std::numeric_limits<float>::infinity();
+			pathNode->gCost = std::numeric_limits<int>::max();
 			pathNode->fcost();
 
 			pathNode->PrevNode = nullptr;
@@ -54,38 +55,38 @@ std::list<node*>* pathFinding::path(user* User,int StartX, int startY, int endX,
 			std::cout << "found node" << std::endl;
 			return caluclatedPath(endNode);
 		}
+
 		
 		openlist->remove(CurrentNodeInList);
 		closedList->push_back(CurrentNodeInList);
 
 		
-
+		//loop through neighbour list to find the lowest cost neighbour by, comparning it the tentative gCost
 		for (node* neighbour : *getNeighbour(CurrentNodeInList))
 		{
-			neighbour = CurrentNodeInList;
-			for(int i = 0; i < closedList->size(); i++)
-			{
+			
+			bool contains = std::find(closedList->begin(), closedList->end(), neighbour) != closedList->end();
 
-				bool nodeInClosed = (std::find(closedList->begin(), closedList->end(), neighbour) != closedList->end());
-				
-
-				if(nodeInClosed == true)
+				if(contains == true)
 				{
 					continue;
 				}
-				if(neighbour->isWalkable != true)
+				if(neighbour->isWalkable == false)
 				{
+				
 					closedList->push_back(neighbour);
+					continue;
 				}
-			}
+			
 
 			bool nodeInOpen = (std::find(openlist->begin(), openlist->end(), neighbour) != openlist->end());
 			int tentativeGCost = CurrentNodeInList->gCost + getDistance(CurrentNodeInList, neighbour);
 			
-				
+			
 			
 			if(tentativeGCost < neighbour->gCost)
 			{
+				
 				neighbour->PrevNode = CurrentNodeInList;
 				neighbour->gCost = tentativeGCost;
 				neighbour->hCost = getDistance(neighbour, endNode);
@@ -104,7 +105,7 @@ std::list<node*>* pathFinding::path(user* User,int StartX, int startY, int endX,
 	return nullptr;
 }
 
-
+//generates a list of neighbours arround the current node
 std::list<node*>*  pathFinding::getNeighbour(node* currentNode)
 {
 	std::list<node*>* neighbours = new std::list<node*>;
@@ -161,6 +162,7 @@ std::list<node*>*  pathFinding::getNeighbour(node* currentNode)
 	return neighbours;
 }
 
+//find the lowestFcost in the open list
 node* pathFinding::GetLowestFcostInList(std::list<node*>* openlistNode)
 {
 
@@ -179,6 +181,8 @@ node* pathFinding::GetLowestFcostInList(std::list<node*>* openlistNode)
 	return LowestCost;
 }
 
+
+// add the path to a new list and reverse the list to find the path
 std::list<node*>* pathFinding::caluclatedPath(node* endNode)
 {
 	std::list<node*>* pathToTarget = new std::list<node*>;
@@ -195,4 +199,12 @@ std::list<node*>* pathFinding::caluclatedPath(node* endNode)
 	pathToTarget->reverse();
 
 	return pathToTarget;
+}
+
+void pathFinding::showPath(std::list<node*>* pathList, std::list<node*>::iterator it, sf::Color color)
+{
+	for(it = pathList->begin(); it != pathList->end(); it++)
+	{
+		(*it)->shape.setFillColor(color);
+	}
 }

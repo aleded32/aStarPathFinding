@@ -40,6 +40,8 @@ public:
 		return HEUSTRIC_COST * std::min(DisX,DisY) + STRAIGHT_COST * remaining;
 	}
 
+	void showPath(std::list<node*>* pathList, std::list<node*>::iterator it, sf::Color color);
+
 
 private:
 
@@ -49,6 +51,7 @@ private:
 
 	std::list<node*>* openlist;
 	std::list<node*>* closedList;
+	
 
 	
 };
